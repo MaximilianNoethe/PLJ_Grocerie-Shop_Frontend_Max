@@ -1,6 +1,14 @@
 import {AxiosInstance} from "axios";
 import {defaultInstance} from "./Api.ts";
 
+type Grocery = {
+    id: number;
+    name: string;
+    region: string;
+    description: string;
+    price: number;
+}
+
 const GroceryService = (api: AxiosInstance = defaultInstance) => ({
     getGroceryData: async () => {
         try {
@@ -11,18 +19,17 @@ const GroceryService = (api: AxiosInstance = defaultInstance) => ({
         }
     },
 
-    getGroceryById: async (groceryId) => {
+    getGroceryById: async (data: Grocery) => {
         try {
-            const response = await api.get(`grocery/${groceryId}`);
+            const response = await api.get(`grocery/${data.id}`);
             return response.data;
         } catch (error) {
             console.error("Error accured");
         }
     },
 
-    createGrocery: async (Name, Region, Description, Price) => {
+    createGrocery: async (data: Grocery) => {
         try {
-            const data = {Name, Region, Description, Price};
 
             const response = await api.post("grocery", data);
             return response.data;
@@ -32,20 +39,18 @@ const GroceryService = (api: AxiosInstance = defaultInstance) => ({
 
     },
 
-    updateGrocery: async (groceryId, Name, Region, Description, Price) => {
+    updateGrocery: async (data: Grocery) => {
         try {
-            const data = {Name, Region, Description, Price};
-
-            const response = await api.put(`grocery/${groceryId}`, data);
+            const response = await api.put(`grocery/${data.id}`, data);
             return response.data;
         } catch (error) {
             console.error("Error accured");
         }
     },
 
-    deleteGrocery: async (groceryId) => {
+    deleteGrocery: async (data: Grocery) => {
         try {
-            const response = await api.delete(`grocery/${groceryId}`);
+            const response = await api.delete(`grocery/${data.id}`);
             return response.data;
         } catch (error) {
             console.error("Error accured");
