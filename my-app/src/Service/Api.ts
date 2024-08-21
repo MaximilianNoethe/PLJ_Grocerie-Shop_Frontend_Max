@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 export const defaultInstance: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:3030',
+    baseURL: 'http://localhost:8080/',
 })
 
 defaultInstance.interceptors.request.use(
