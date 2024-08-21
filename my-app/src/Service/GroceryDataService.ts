@@ -12,10 +12,11 @@ type Grocery = {
 const GroceryService = (api: AxiosInstance = defaultInstance) => ({
     getGroceryData: async () => {
         try {
-            const response = await api.get("grocery")
-            return response["data"];
+            const response = await defaultInstance.get("grocery")
+            console.log(response.data);
+            return response.data;
         } catch (error) {
-            console.error("Error accured");
+            console.error("Error getting grocery data", error);
         }
     },
 
