@@ -10,10 +10,9 @@ export const defaultInstance: AxiosInstance = axios.create({
 
 defaultInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig<any>) => {
-        if (localStorage.getItem("accessToken") !== "") {
-            config.headers.Authorization = `Basic ${localStorage.getItem(
-                "accessToken"
-            )}`;
+        if (localStorage.getItem("user") !== "") {
+
+            config.auth = {username:"ADMIN",password:"ADMIN"};
         }
         return config;
     },
